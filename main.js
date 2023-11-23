@@ -3,6 +3,10 @@ let button1 = document.getElementById("button1");
 let header1 = document.getElementById("Header");
 let librii = document.getElementById("libri");
 let isClicked = false;
+let formLibri = document.getElementById("formLibri");
+let formTitle = document.getElementById("titoloLibro");
+let formAutor = document.getElementById("autoreLibro");
+let formButton = document.getElementById("bottoneForm");
 
 // Objects e Arrays
 let libreria = [
@@ -37,3 +41,25 @@ button1.addEventListener("click", function () {
     isClicked = true;
   }
 });
+
+// Aggiungi libro al submit
+formLibri.addEventListener("submit", function (a) {
+  a.preventDefault();
+  libreria.push({ libro: formTitle.value, autore: formAutor.value });
+  aggiornaLibreria();
+  formTitle.value = "";
+  formAutor.value = "";
+});
+
+function aggiornaLibreria() {
+  librii.innerHTML = "";
+  libreria.forEach((tomo) => {
+    let titolo = document.createElement("h3");
+    let paragrafo = document.createElement("p");
+    titolo.textContent = tomo.libro;
+    paragrafo.textContent = "di " + tomo.autore;
+    librii.appendChild(titolo);
+    librii.appendChild(paragrafo);
+  });
+}
+aggiornaLibreria();
