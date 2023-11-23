@@ -46,6 +46,9 @@ h5,
 }
 
 /* Containers */
+body {
+  margin: 10px 30px;
+}
 .flex-header {
   display: flex;
   justify-content: center;
@@ -54,12 +57,7 @@ h5,
   display: flex;
   justify-content: center;
   flex-direction: column;
-}
-.flex-container2 {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
+  flex-wrap: nowrap;
 }
 .img {
   max-width: 50%;
@@ -71,4 +69,10 @@ h5,
   background-color: orange;
   border: 2px solid whitesmoke;
   border-radius: 10px;
+}
+.flex-container2 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
