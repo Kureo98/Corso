@@ -45,10 +45,14 @@ button1.addEventListener("click", function () {
 // Aggiungi libro al submit
 formLibri.addEventListener("submit", function (a) {
   a.preventDefault();
-  libreria.push({ libro: formTitle.value, autore: formAutor.value });
-  aggiornaLibreria();
-  formTitle.value = "";
-  formAutor.value = "";
+  if (formTitle.value.trim() != "" && formAutor.value.trim() != "") {
+    libreria.push({ libro: formTitle.value, autore: formAutor.value });
+    formTitle.value = "";
+    formAutor.value = "";
+  } else {
+    return alert("Inserisci elementi validi");
+  }
+  return aggiornaLibreria();
 });
 
 function aggiornaLibreria() {
