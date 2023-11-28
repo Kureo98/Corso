@@ -44,6 +44,12 @@ h5,
 .text-size1 {
   font-size: 4rem;
 }
+/* Form */
+.formContainer {
+  display: flex;
+  flex-wrap: nowrap;
+  flex-direction: column;
+}
 /* Container */
 .container {
   margin: 50px 350px;

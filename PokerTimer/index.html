@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <!-- DayJS -->
+    <script src="https://cdn.jsdelivr.net/npm/dayjs@1/dayjs.min.js"></script>
     <!-- Required meta tags -->
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -26,66 +28,117 @@
     <title>Mio</title>
   </head>
   <body class="bg-dark">
+    <!-- Header -->
     <div class="header" id="header">
       <h1 style="margin-bottom: 0px">Poker Timer</h1>
     </div>
-
+    <!-- Forms -->
+    <div class="formSection">
+      <form class="formContainer">
+        <!-- Timer Blinds -->
+        <div style="display: flex">
+          <h3>Timer:</h3>
+          <input
+            class=""
+            style="color: black"
+            type="number"
+            id="minutiTimer"
+            placeholder="Inserisci minuti Timer"
+          />
+        </div>
+        <div style="display: flex">
+          <h3>Blinds:</h3>
+          <input
+            class=""
+            style="color: black"
+            type="number"
+            id="smallBlind"
+            placeholder="Small Blind"
+          />
+          /
+          <input
+            class=""
+            style="color: black"
+            type="number"
+            id="bigBlind"
+            placeholder="Big Blind"
+          />
+        </div>
+        <div style="display: flex">
+          <h3>Players:</h3>
+          <input
+            class=""
+            style="color: black"
+            type="number"
+            id="playersCount"
+            placeholder="Numero giocatori"
+          />
+        </div>
+        <div style="display: flex">
+          <h3>Stack Iniziale:</h3>
+          <input
+            class=""
+            style="color: black"
+            type="number"
+            id="playerStack"
+            placeholder="Stack per persona"
+          />
+        </div>
+      </form>
+      <!-- Submit Button -->
+      <button id="submitButton" class="button" type="button">Conferma</button>
+    </div>
     <div class="container">
       <!-- Display Sinistra -->
       <div class="leftSide">
         <div class="livelloAttuale">
           <h4 class="h4Sopra">Livello</h4>
-          <h4 class="h4Sotto">
-            7°
-          </h4>
+          <h4 id="blindLevel" class="h4Sotto">7°</h4>
         </div>
         <div class="numeroGiocatori">
           <h4 class="h4Sopra">Giocatori</h4>
-          <h4 class="h4Sotto">
-            4
-          </h4>
+          <h4 id="players" class="h4Sotto">4</h4>
         </div>
         <div class="numeroChips">
           <h4 class="h4Sopra">Chips Count</h4>
-          <h4 class="h4Sotto">
-            20.000
-          </h4>
+          <h4 id="chipCount" class="h4Sotto">20.000</h4>
         </div>
       </div>
       <!-- Display Centrale -->
       <div class="centerSide">
-        <input type="text"
+        <h1
+          id="timer"
+          type="text"
           class="enlapseTime"
           style="margin: 0px; padding: 30px; font-size: 120px"
-          value="2000"
         >
-          
-      </input>
-        <h3 class="blinds h3Sopra" >
-          Blinds: 20 / 40
-        </h3>
-        <h3 class="ante h3Sopra" >Ante: 0</h3>
-        <h3 class="nextBlinds">Next Blinds: 40 / 80</h3>
+          20:00
+        </h1>
+        <h3 id="blinds" class="blinds h3Sopra">Blinds: 20 / 40</h3>
+        <h3 class="ante h3Sopra">Ante: 0</h3>
+        <h3 id="nextBlinds" class="nextBlinds">Next Blinds: 40 / 80</h3>
       </div>
       <!-- Display Destra -->
       <div class="rightSide">
         <div class="nextBreak">
           <h4 class="h4Sopra">Prossima Pausa:</h4>
-          <h4 class="h4Sotto">
-            1:28:4
-          </h4>
+          <h4 class="h4Sotto">1:28:4</h4>
         </div>
         <div class="started">
           <h4 class="h4Sopra">In corso da:</h4>
           <h4 class="h4Sotto">
-            56 minuti
+            <span class="digit" id="hr"> 00</span>
+            <span class="txt">:</span>
+            <span class="digit" id="min"> 00</span>
+            <span class="txt">:</span>
+            <span class="digit" id="sec"> 00</span>
+            <span class="txt">:</span>
+            <span class="digit" id="count"> 00</span>
           </h4>
         </div>
         <div class="currentTime">
           <h4 class="h4Sopra">Ore:</h4>
-          <h4 class="h4Sotto">
-            23:54
-          </h4>
+          <h4 id="currentTime" class="h4Sotto">23:54</h4>
         </div>
       </div>
       <!-- Bottoni -->
