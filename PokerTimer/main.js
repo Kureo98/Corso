@@ -17,12 +17,14 @@ let blindLevel = document.getElementById("blindLevel"); //Blind Level Display
 let playerStack = document.getElementById("playerStack"); //Chips Value
 let chipCount = document.getElementById("chipCount"); //Chips Display
 // --------------------------------//
-let currentTime = document.getElementById("currentTime"); //Current Time
-let oraCorrente = dayjs();
-let oraFormattata = oraCorrente.format("HH:mm:ss");
+let stopwatchD = document.getElementById("stopwatch");
+let currentTimee = document.getElementById("currentTime"); //Current Time
+
 // --------------------------------//
 let submitButton = document.getElementById("submitButton");
-
+// Stopwatch variabili
+let startTime;
+let stopwatchInteval;
 // Oggetti & Array
 let timerInfo = {
   Timer: 0,
@@ -36,33 +38,8 @@ let timerInfo = {
 };
 
 //Funzioni & Eventi
-submitButton.addEventListener("click", function (a) {
-  a.preventDefault();
 
-  if (
-    formTimer.value.trim() !== "" &&
-    smallBlind.value.trim() !== "" &&
-    bigBlind.value.trim() !== "" &&
-    playerCount.value.trim() !== ""
-  ) {
-    timer = true;
-    timerInfo.Timer = formTimer.value; //Timer
-    timerInfo.Blinds[0] = smallBlind.value; //Small Blind
-    timerInfo.Blinds[1] = bigBlind.value; //Big Blind
-    timerInfo.NextBlinds[0] = parseInt(smallBlind.value) + 10; //Next Small Blind
-    timerInfo.NextBlinds[1] = parseInt(bigBlind.value) + 20; //Next Big Blind
-    timerInfo.Players = playerCount.value; //Players
-    timerInfo.InitialStack = parseInt(playerStack.value); //Chips Iniziali
-    timerSetup();
-  } else {
-    alert("Completa correttamente i campi!");
-  }
-  formTimer.value = "";
-  smallBlind.value = "";
-  bigBlind.value = "";
-  playerCount.value = "";
-  playerStack.value = "";
-});
+//POPOLIAMO POKER TIMER
 
 function timerSetup() {
   timer.textContent = timerInfo.Timer + ":00"; //Timer
@@ -73,7 +50,69 @@ function timerSetup() {
   players.textContent = timerInfo.Players; //Players
   blindLevel.textContent = timerInfo.Level + "°"; //Blind Level
   chipCount.textContent = timerInfo.InitialStack * timerInfo.Players; //Chips Count
-  currentTime.textContent = oraFormattata;
 }
 
+// EVENTO AL CLICK FOMR
+
+submitButton.addEventListener("click", function (a) {
+  a.preventDefault();
+
+  if (
+    formTimer.value.trim() !== "" &&
+    smallBlind.value.trim() !== "" &&
+    bigBlind.value.trim() !== "" &&
+    playerCount.value.trim() !== ""
+  ) {
+    timerInfo.Timer = formTimer.value; //Timer
+    timerInfo.Blinds[0] = smallBlind.value; //Small Blind
+    timerInfo.Blinds[1] = bigBlind.value; //Big Blind
+    timerInfo.NextBlinds[0] = parseInt(smallBlind.value) + 10; //Next Small Blind
+    timerInfo.NextBlinds[1] = parseInt(bigBlind.value) + 20; //Next Big Blind
+    timerInfo.Players = playerCount.value; //Players
+    timerInfo.InitialStack = parseInt(playerStack.value); //Chips Iniziali
+    timerSetup();
+
+    startStopwatch();
+  } else {
+    alert("Completa correttamente i campi!");
+  }
+  formTimer.value = "";
+  smallBlind.value = "";
+  bigBlind.value = "";
+  playerCount.value = "";
+  playerStack.value = "";
+});
+
+// Aggiorniamo l'orario corrente
+
+function updatecurrentTimee() {
+  let oraCorrente = dayjs();
+  let oraFormattata = oraCorrente.format("HH:mm:ss");
+  currentTimee.textContent = oraFormattata;
+}
+setInterval(updatecurrentTimee, 1000);
+updatecurrentTimee();
+
+// Logica del cronometro
+
+function startStopwatch() {
+  startTime = dayjs();
+  stopwatchInteval = setInterval(updateStopwatch, 1000);
+}
+function updateStopwatch() {
+  let currentTime = dayjs();
+  let diff = currentTime - startTime;
+  stopwatchD.textContent = formatTime(diff);
+}
+function formatTime(milliseconds) {
+  let totalSeconds = Math.floor(milliseconds / 1000);
+  let hours = Math.floor(totalSeconds / 3600);
+  let minutes = Math.floor((totalSeconds % 3600) / 60);
+  let seconds = totalSeconds % 60;
+
+  return `${pad(hours)}:${pad(minutes)}:${pad(seconds)}`;
+}
+function pad(value) {
+  return String(value).padStart(2, "0");
+}
 timerSetup();
