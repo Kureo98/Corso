@@ -33,6 +33,61 @@
       <h1 style="margin-bottom: 0px">Poker Timer</h1>
     </div>
     <!-- Forms -->
+
+    <div class="container">
+      <!-- Display Sinistra -->
+      <div class="leftSide">
+        <div class="livelloAttuale">
+          <h4 class="h4Sopra">Livello</h4>
+          <h4 id="blindLevel" class="h4Sotto">7°</h4>
+        </div>
+        <div class="numeroGiocatori">
+          <h4 class="h4Sopra">Giocatori</h4>
+          <h4 id="players" class="h4Sotto">4</h4>
+        </div>
+        <div class="numeroChips">
+          <h4 class="h4Sopra">Chips Count</h4>
+          <h4 id="chipCount" class="h4Sotto">20.000</h4>
+        </div>
+      </div>
+      <!-- Display Centrale -->
+      <div class="centerSide">
+        <h1
+          id="timer"
+          type="text"
+          class="enlapseTime"
+          style="margin: 0px; padding: 30px; font-size: 120px"
+        >
+          20:00
+        </h1>
+        <h3 id="blinds" class="blinds h3Sopra">Blinds: 20 / 40</h3>
+        <h3 class="ante h3Sopra">Ante: 0</h3>
+        <h3 id="nextBlinds" class="nextBlinds">Next Blinds: 40 / 80</h3>
+      </div>
+      <!-- Display Destra -->
+      <div class="rightSide">
+        <div class="nextBreak">
+          <h4 class="h4Sopra">Prossima Pausa:</h4>
+          <h4 class="h4Sotto">1:28:4</h4>
+        </div>
+        <div class="started">
+          <h4 class="h4Sopra">In corso da:</h4>
+          <h4 class="h4Sotto">
+            <span class="" id="stopwatch"> -- : -- : --</span>
+          </h4>
+        </div>
+        <div class="currentTime">
+          <h4 class="h4Sopra">Ore:</h4>
+          <h4 id="currentTime" class="h4Sotto">23:54</h4>
+        </div>
+      </div>
+      <!-- Bottoni -->
+    </div>
+    <div class="buttonContainer">
+      <input class="button" type="button" value="Start" />
+      <input class="button" type="button" value="Stop" />
+      <input class="button" type="button" value="Reset" />
+    </div>
     <div class="formSection">
       <form class="formContainer">
         <!-- Timer Blinds -->
@@ -88,61 +143,6 @@
       <!-- Submit Button -->
       <button id="submitButton" class="button" type="button">Conferma</button>
     </div>
-    <div class="container">
-      <!-- Display Sinistra -->
-      <div class="leftSide">
-        <div class="livelloAttuale">
-          <h4 class="h4Sopra">Livello</h4>
-          <h4 id="blindLevel" class="h4Sotto">7°</h4>
-        </div>
-        <div class="numeroGiocatori">
-          <h4 class="h4Sopra">Giocatori</h4>
-          <h4 id="players" class="h4Sotto">4</h4>
-        </div>
-        <div class="numeroChips">
-          <h4 class="h4Sopra">Chips Count</h4>
-          <h4 id="chipCount" class="h4Sotto">20.000</h4>
-        </div>
-      </div>
-      <!-- Display Centrale -->
-      <div class="centerSide">
-        <h1
-          id="timer"
-          type="text"
-          class="enlapseTime"
-          style="margin: 0px; padding: 30px; font-size: 120px"
-        >
-          20:00
-        </h1>
-        <h3 id="blinds" class="blinds h3Sopra">Blinds: 20 / 40</h3>
-        <h3 class="ante h3Sopra">Ante: 0</h3>
-        <h3 id="nextBlinds" class="nextBlinds">Next Blinds: 40 / 80</h3>
-      </div>
-      <!-- Display Destra -->
-      <div class="rightSide">
-        <div class="nextBreak">
-          <h4 class="h4Sopra">Prossima Pausa:</h4>
-          <h4 class="h4Sotto">1:28:4</h4>
-        </div>
-        <div class="started">
-          <h4 class="h4Sopra">In corso da:</h4>
-          <h4 class="h4Sotto">
-            <span class="" id="stopwatch"> 00</span>
-          </h4>
-        </div>
-        <div class="currentTime">
-          <h4 class="h4Sopra">Ore:</h4>
-          <h4 id="currentTime" class="h4Sotto">23:54</h4>
-        </div>
-      </div>
-      <!-- Bottoni -->
-    </div>
-    <div class="buttonContainer">
-      <input class="button" type="button" value="Start" />
-      <input class="button" type="button" value="Stop" />
-      <input class="button" type="button" value="Reset" />
-    </div>
-
     <!-- Fontawesome -->
     <script
       src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/js/all.min.js"

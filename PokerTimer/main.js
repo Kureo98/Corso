@@ -17,11 +17,12 @@ let blindLevel = document.getElementById("blindLevel"); //Blind Level Display
 let playerStack = document.getElementById("playerStack"); //Chips Value
 let chipCount = document.getElementById("chipCount"); //Chips Display
 // --------------------------------//
-let stopwatchD = document.getElementById("stopwatch");
+let stopwatchD = document.getElementById("stopwatch"); //Stopwatch Display
 let currentTimee = document.getElementById("currentTime"); //Current Time
-
 // --------------------------------//
 let submitButton = document.getElementById("submitButton");
+// --------------------------------//
+
 // Stopwatch variabili
 let startTime;
 let stopwatchInteval;
@@ -87,7 +88,7 @@ submitButton.addEventListener("click", function (a) {
 
 function updatecurrentTimee() {
   let oraCorrente = dayjs();
-  let oraFormattata = oraCorrente.format("HH:mm:ss");
+  let oraFormattata = oraCorrente.format("HH:mm");
   currentTimee.textContent = oraFormattata;
 }
 setInterval(updatecurrentTimee, 1000);
@@ -101,8 +102,8 @@ function startStopwatch() {
 }
 function updateStopwatch() {
   let currentTime = dayjs();
-  let diff = currentTime - startTime;
-  stopwatchD.textContent = formatTime(diff);
+  let differenza = currentTime - startTime;
+  stopwatchD.textContent = formatTime(differenza);
 }
 function formatTime(milliseconds) {
   let totalSeconds = Math.floor(milliseconds / 1000);
