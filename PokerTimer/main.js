@@ -43,7 +43,6 @@ let timerInfo = {
 //POPOLIAMO POKER TIMER
 
 function timerSetup() {
-  timer.textContent = timerInfo.Timer + ":00"; //Timer
   blinds.textContent =
     "Blinds: " + timerInfo.Blinds[0] + " / " + timerInfo.Blinds[1]; //Small & Big Blinds
   NextBlinds.textContent =
@@ -72,7 +71,7 @@ submitButton.addEventListener("click", function (a) {
     timerInfo.Players = playerCount.value; //Players
     timerInfo.InitialStack = parseInt(playerStack.value); //Chips Iniziali
     timerSetup();
-
+    startCountdown();
     startStopwatch();
   } else {
     alert("Completa correttamente i campi!");
@@ -84,6 +83,41 @@ submitButton.addEventListener("click", function (a) {
   playerStack.value = "";
 });
 
+// Countdown Timer
+
+let countdown;
+let startingTime;
+let levels = timerInfo.Level;
+
+function startCountdown() {
+  let minutes = parseInt(formTimer.value);
+  startingTime = minutes * 60;
+  countDownSeconds = minutes * 60; // Converti i minuti in secondi
+
+  if (countdown) {
+    clearInterval(countdown); // Resetta il timer precedente se esiste
+  }
+
+  countdown = setInterval(updateCountdown, 1000);
+}
+
+function updateCountdown() {
+  let minutes = Math.floor(countDownSeconds / 60);
+  let seconds = countDownSeconds % 60;
+  timer.textContent = `${pad(minutes)}:${pad(seconds)}`;
+
+  if (countDownSeconds <= 0) {
+    blindLevel.textContent = ++levels + "°"; // Incremento del Livello dei bui a ogni reset
+    countDownSeconds = startingTime;
+  } else {
+    countDownSeconds--;
+  }
+
+  // DIO BOIA AGGIORNATI!!!!
+  if (countDownSeconds === startingTime - 1) {
+    blindLevel.textContent = levels + "°";
+  }
+}
 // Aggiorniamo l'orario corrente
 
 function updatecurrentTimee() {
@@ -114,6 +148,6 @@ function formatTime(milliseconds) {
   return `${pad(hours)}:${pad(minutes)}:${pad(seconds)}`;
 }
 function pad(value) {
-  return String(value).padStart(2, "0");
+  return String(value).padStart(2, "0"); //"padStart" Nel numero devono esserci almeno 2 cifre, se ne manca una metti "0"
 }
 timerSetup();
