@@ -87,18 +87,16 @@ submitButton.addEventListener("click", function (a) {
 
 let countdown;
 let startingTime;
-let levels = timerInfo.Level;
 
 function startCountdown() {
-  let minutes = parseInt(formTimer.value);
-  startingTime = minutes * 60;
-  countDownSeconds = minutes * 60; // Converti i minuti in secondi
-
+  let formMinutes = parseInt(formTimer.value);
+  startingTime = formMinutes * 60;
+  countDownSeconds = formMinutes * 60; // Converti i minuti in secondi
   if (countdown) {
     clearInterval(countdown); // Resetta il timer precedente se esiste
   }
 
-  countdown = setInterval(updateCountdown, 1000);
+  countdown = setInterval(updateCountdown, 100);
 }
 
 function updateCountdown() {
@@ -107,15 +105,17 @@ function updateCountdown() {
   timer.textContent = `${pad(minutes)}:${pad(seconds)}`;
 
   if (countDownSeconds <= 0) {
-    blindLevel.textContent = ++levels + "°"; // Incremento del Livello dei bui a ogni reset
+    timerInfo.Level++;
+    blindLevel.textContent = timerInfo.Level + "°"; // Incremento del Livello dei bui a ogni reset
     countDownSeconds = startingTime;
+    console.log(timerInfo.Level);
   } else {
     countDownSeconds--;
   }
 
   // DIO BOIA AGGIORNATI!!!!
   if (countDownSeconds === startingTime - 1) {
-    blindLevel.textContent = levels + "°";
+    blindLevel.textContent = timerInfo.Level + "°";
   }
 }
 // Aggiorniamo l'orario corrente
